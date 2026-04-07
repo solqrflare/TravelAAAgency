@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TravelAAAgency — Antigua: Paradise Awaits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+
+/* ── RESET ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+/* ── TOKENS ── */
+:root {
+  --cream:  #f8f1e4;
+  --sand:   #e8d8bc;
+  --gold:   #c4882a;
+  --gold2:  #f0c060;
+  --teal:   #0b6b5a;
+  --teal2:  #12a882;
+  --ocean:  #0a3d52;
+  --ink:    #10130f;
+  --deep:   #161c15;
+  --rust:   #b03a18;
+  --muted:  rgba(248,241,228,0.5);
+  --faint:  rgba(248,241,228,0.15);
+
+  --f-serif: 'Cormorant Garamond', Georgia, serif;
+  --f-sans:  'DM Sans', system-ui, sans-serif;
+  --f-mono:  'DM Mono', 'Courier New', monospace;
+}
+
+body {
+  font-family: var(--f-sans);
+  background: var(--ink);
+  color: var(--cream);
+  overflow-x: hidden;
+}
+
+/* ── SHARED ── */
+.section-label {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  max-width: 48px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.4;
+}
+
+.chip {
+  display: inline-block;
+  font-family: var(--f-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 2px;
+  border: 1px solid;
+  line-height: 1.4;
+}
+.chip-g { color: rgba(196,136,42,0.95); border-color: rgba(196,136,42,0.3); background: rgba(196,136,42,0.1); }
+.chip-r { color: rgba(176,58,24,0.95); border-color: rgba(176,58,24,0.3); background: rgba(176,58,24,0.1); }
+
+/* ═══════════ NAV ═══════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 48px;
+  background: linear-gradient(to bottom, rgba(16,19,15,0.9) 0%, transparent 100%);
+  backdrop-filter: blur(0px);
+}
+
+.nav-logo {
+  font-family: var(--f-serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--cream);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--gold); }
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+  font-family: var(--f-mono);
+}
+.nav-links a:hover { color: var(--cream); }
+
+@media (max-width: 640px) {
+  nav { padding: 18px 24px; }
+  .nav-links { display: none; }
+}
+
+/* ═══════════ HERO ═══════════ */
+.hero {
+  position: relative;
+  height: 100svh;
+  min-height: 620px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+/* Sky gradient layers */
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 90% 55% at 62% 0%, rgba(196,136,42,0.28) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 70% at 15% 85%, rgba(11,107,90,0.22) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 80% at 50% 0%, rgba(10,61,82,0.55) 0%, transparent 65%),
+    linear-gradient(165deg, #0c2218 0%, #0e1c12 45%, #10130f 100%);
+}
+
+/* Sun */
+.hero-sun {
+  position: absolute;
+  top: 18%;
+  left: 58%;
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 36%, #ffe090 0%, #d4901a 55%, #7a3a08 100%);
+  box-shadow: 0 0 0 16px rgba(196,136,42,0.07), 0 0 0 36px rgba(196,136,42,0.04), 0 0 80px 24px rgba(196,136,42,0.22);
+  animation: pulse-sun 5s ease-in-out infinite;
+}
+@keyframes pulse-sun {
+  0%, 100% { box-shadow: 0 0 0 16px rgba(196,136,42,0.07), 0 0 0 36px rgba(196,136,42,0.04), 0 0 80px 24px rgba(196,136,42,0.22); }
+  50%       { box-shadow: 0 0 0 20px rgba(196,136,42,0.09), 0 0 0 44px rgba(196,136,42,0.05), 0 0 100px 32px rgba(196,136,42,0.28); }
+}
+
+/* Horizon */
+.hero-horizon {
+  position: absolute;
+  top: 42%;
+  left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(196,136,42,0.5) 25%, rgba(18,168,130,0.45) 75%, transparent 100%);
+}
+
+/* Water */
+.hero-water {
+  position: absolute;
+  top: 42%; bottom: 0;
+  left: 0; right: 0;
+  background: linear-gradient(180deg, rgba(10,61,82,0.85) 0%, rgba(8,44,60,0.97) 30%, #08111a 100%);
+}
+.hero-water::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 5px,
+    rgba(18,168,130,0.025) 5px, rgba(18,168,130,0.025) 6px
+  );
+}
+
+/* Palm silhouettes via SVG embedded */
+.hero-palms {
+  position: absolute;
+  bottom: 28%;
+  left: 0; right: 0;
+  height: 220px;
+  pointer-events: none;
+  opacity: 0.65;
+}
+
+/* Bottom gradient to blend into content */
+.hero-fade {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 45%;
+  background: linear-gradient(to top, var(--ink) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  padding: 0 48px 80px;
+  max-width: 1100px;
+}
+
+.hero-eyebrow {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(196,136,42,0.8);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px; height: 1px;
+  background: rgba(196,136,42,0.5);
+}
+
+.hero h1 {
+  font-family: var(--f-serif);
+  font-weight: 300;
+  font-size: clamp(3.6rem, 9vw, 8.5rem);
+  line-height: 0.94;
+  color: var(--cream);
+  margin-bottom: 28px;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.4);
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold2);
+}
+.hero h1 .small-line {
+  display: block;
+  font-size: 0.34em;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(248,241,228,0.55);
+  margin-bottom: 0.25em;
+}
+
+.hero-sub {
+  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+  color: rgba(248,241,228,0.6);
+  max-width: 480px;
+  line-height: 1.7;
+  font-weight: 300;
+  margin-bottom: 36px;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--gold);
+  color: #2a1400;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  border-radius: 2px;
+  text-decoration: none;
+  font-weight: 400;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-primary:hover { background: var(--gold2); transform: translateY(-1px); }
+
+.btn-ghost {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s;
+}
+.btn-ghost:hover { color: var(--cream); }
+.btn-ghost::after { content: '↓'; font-style: normal; }
+
+.hero-appeals {
+  position: absolute;
+  bottom: 80px; right: 48px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+@media (max-width: 640px) {
+  .hero-content { padding: 0 24px 64px; }
+  .hero-appeals { display: none; }
+}
+
+/* ═══════════ PROMO STRIP ═══════════ */
+.promo-strip {
+  background: var(--deep);
+  border-top: 1px solid rgba(248,241,228,0.06);
+  border-bottom: 1px solid rgba(248,241,228,0.06);
+  padding: 28px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  overflow-x: auto;
+}
+
+.promo-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.promo-item-icon {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(196,136,42,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  background: rgba(196,136,42,0.08);
+}
+.promo-item-text strong {
+  display: block;
+  font-family: var(--f-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--cream);
+  line-height: 1.2;
+}
+.promo-item-text span {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+.promo-divider {
+  width: 1px;
+  height: 36px;
+  background: rgba(248,241,228,0.08);
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .promo-strip { padding: 20px 24px; }
+}
+
+/* ═══════════ FEATURES ═══════════ */
+.features {
+  padding: 120px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.features-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 80px;
+  align-items: end;
+}
+
+.features-header h2 {
+  font-family: var(--f-serif);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--cream);
+}
+.features-header h2 em { font-style: italic; color: var(--teal2); }
+
+.features-header p {
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: rgba(248,241,228,0.55);
+  font-weight: 300;
+  align-self: end;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.feat-card {
+  background: var(--deep);
+  padding: 40px 32px;
+  border: 1px solid rgba(248,241,228,0.05);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+.feat-card:hover { border-color: rgba(196,136,42,0.25); }
+
+.feat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.feat-card:hover::before { opacity: 1; }
+
+.feat-num {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  color: rgba(196,136,42,0.5);
+  letter-spacing: 0.2em;
+  margin-bottom: 28px;
+}
+
+.feat-card h3 {
+  font-family: var(--f-serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.feat-card p {
+  font-size: 0.85rem;
+  color: rgba(248,241,228,0.5);
+  line-height: 1.75;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 900px) {
+  .features-grid { grid-template-columns: 1fr 1fr; }
+  .features-header { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .features { padding: 80px 24px; }
+  .features-grid { grid-template-columns: 1fr; }
+}
+
+/* ═══════════ SPLIT CONTRAST ═══════════ */
+.contrast {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 600px;
+}
+
+.contrast-left {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(145deg, #0a4a3a 0%, #0c6850 40%, #0a3d52 100%);
+  padding: 72px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.contrast-left::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M0 0h40v40H0z'/%3E%3Ccircle cx='20' cy='20' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.contrast-photo-overlay {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 60%, rgba(18,168,130,0.15) 0%, transparent 60%);
+}
+
+.contrast-left-content { position: relative; z-index: 2; }
+
+.contrast-big-text {
+  font-family: var(--f-serif);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 300;
+  font-style: italic;
+  color: #fff;
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+
+.contrast-left p {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.8;
+  font-weight: 300;
+  max-width: 360px;
+  margin-bottom: 28px;
+}
+
+.contrast-right {
+  background: var(--deep);
+  padding: 72px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 1px solid rgba(248,241,228,0.05);
+}
+
+.contrast-right h3 {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 40px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(176,58,24,0.2);
+}
+
+.truth-row {
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(248,241,228,0.05);
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.truth-row:last-child { border-bottom: none; }
+
+.truth-index {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  color: rgba(176,58,24,0.6);
+  margin-top: 3px;
+}
+
+.truth-row h4 {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--cream);
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+
+.truth-row p {
+  font-size: 0.8rem;
+  color: rgba(248,241,228,0.45);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+@media (max-width: 800px) {
+  .contrast { grid-template-columns: 1fr; }
+  .contrast-left, .contrast-right { padding: 56px 32px; }
+}
+
+/* ═══════════ QUOTE ═══════════ */
+.quote-section {
+  padding: 100px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, var(--ink) 0%, var(--deep) 50%, var(--ink) 100%);
+  border-top: 1px solid rgba(248,241,228,0.04);
+  border-bottom: 1px solid rgba(248,241,228,0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.quote-section::before {
+  content: '\201C';
+  position: absolute;
+  top: -40px;
+  left: 40px;
+  font-family: var(--f-serif);
+  font-size: 280px;
+  color: rgba(196,136,42,0.05);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.quote-inner {
+  max-width: 760px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.quote-inner blockquote {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.quote-inner blockquote em {
+  font-style: normal;
+  color: var(--gold2);
+}
+
+.quote-cite {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(248,241,228,0.35);
+}
+
+/* ═══════════ TESTIMONIALS ═══════════ */
+.testimonials {
+  padding: 100px 48px;
+  background: var(--ink);
+}
+
+.testimonials-header {
+  max-width: 1100px;
+  margin: 0 auto 56px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.testimonials-header h2 {
+  font-family: var(--f-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  color: var(--cream);
+}
+
+.testimonials-header p {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: rgba(248,241,228,0.3);
+  text-transform: uppercase;
+  max-width: 220px;
+  text-align: right;
+  line-height: 1.6;
+}
+
+.test-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.test-card {
+  background: var(--deep);
+  border: 1px solid rgba(248,241,228,0.05);
+  padding: 36px 32px;
+}
+
+.test-stars {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 20px;
+}
+.test-stars span {
+  display: block;
+  width: 10px; height: 10px;
+  background: var(--gold);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.test-card blockquote {
+  font-family: var(--f-serif);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: rgba(248,241,228,0.85);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.test-aside {
+  font-size: 11px;
+  color: rgba(176,58,24,0.8);
+  font-style: normal;
+  border-left: 2px solid rgba(176,58,24,0.3);
+  padding-left: 10px;
+  margin-top: 12px;
+  line-height: 1.6;
+  font-family: var(--f-mono);
+  display: block;
+}
+
+.test-reviewer {
+  font-size: 11px;
+  color: rgba(248,241,228,0.3);
+  font-family: var(--f-mono);
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 800px) {
+  .test-grid { grid-template-columns: 1fr; }
+  .testimonials-header { flex-direction: column; }
+  .testimonials-header p { text-align: left; }
+}
+@media (max-width: 640px) {
+  .testimonials { padding: 72px 24px; }
+}
+
+/* ═══════════ FINE PRINT ═══════════ */
+.fine-print {
+  background: #080a07;
+  border-top: 1px solid rgba(248,241,228,0.06);
+  padding: 64px 48px;
+}
+
+.fine-print-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.fine-print-label {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(248,241,228,0.2);
+  line-height: 2;
+  padding-top: 4px;
+  border-right: 1px solid rgba(248,241,228,0.06);
+  padding-right: 24px;
+}
+
+.fine-print-text {
+  font-size: 11px;
+  color: rgba(248,241,228,0.28);
+  line-height: 2;
+  font-family: var(--f-mono);
+  font-weight: 300;
+}
+
+.fine-print-text em {
+  color: rgba(200,149,42,0.55);
+  font-style: normal;
+}
+
+@media (max-width: 640px) {
+  .fine-print { padding: 48px 24px; }
+  .fine-print-inner { grid-template-columns: 1fr; }
+  .fine-print-label { border-right: none; border-bottom: 1px solid rgba(248,241,228,0.06); padding-right: 0; padding-bottom: 16px; }
+}
+
+/* ═══════════ FOOTER ═══════════ */
+footer {
+  background: var(--ink);
+  border-top: 1px solid rgba(248,241,228,0.06);
+  padding: 40px 48px;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  font-family: var(--f-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: rgba(248,241,228,0.35);
+}
+.footer-logo span { color: rgba(196,136,42,0.5); }
+
+.footer-copy {
+  font-size: 11px;
+  color: rgba(248,241,228,0.2);
+  font-family: var(--f-mono);
+  letter-spacing: 0.05em;
+  line-height: 1.8;
+  text-align: right;
+}
+
+.footer-techniques {
+  font-size: 10px;
+  color: rgba(248,241,228,0.12);
+  font-family: var(--f-mono);
+  max-width: 100%;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(248,241,228,0.04);
+  width: 100%;
+  line-height: 1.9;
+}
+
+@media (max-width: 640px) {
+  footer { padding: 32px 24px; }
+  .footer-copy { text-align: left; }
+}
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#" class="nav-logo">Travel<span>AAA</span>gency</a>
+  <ul class="nav-links">
+    <li><a href="#features">Explore</a></li>
+    <li><a href="#truth">Reality</a></li>
+    <li><a href="#book">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-sun"></div>
+  <div class="hero-horizon"></div>
+  <div class="hero-water"></div>
+
+  <!-- Palm silhouettes via inline SVG -->
+  <svg class="hero-palms" viewBox="0 0 1440 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax slice">
+    <!-- Left palm -->
+    <path d="M120,220 Q115,160 110,100 Q80,60 40,30 Q75,55 108,95 Q105,50 95,10 Q115,50 112,95 Q140,55 170,40 Q148,68 116,98 Q125,155 130,220Z" fill="#070f08"/>
+    <path d="M155,220 Q150,180 148,150 Q130,120 110,110 Q135,118 147,148 Q145,125 138,105 Q153,122 150,148 Q165,125 175,118 Q165,130 153,150 Q158,180 162,220Z" fill="#070f08"/>
+    <!-- Right palm -->
+    <path d="M1300,220 Q1305,160 1310,100 Q1340,60 1380,30 Q1345,55 1312,95 Q1315,50 1325,10 Q1305,50 1308,95 Q1280,55 1250,40 Q1272,68 1304,98 Q1295,155 1290,220Z" fill="#070f08"/>
+    <path d="M1270,220 Q1275,180 1278,150 Q1296,120 1316,110 Q1291,118 1279,148 Q1281,125 1288,105 Q1273,122 1276,148 Q1261,125 1251,118 Q1261,130 1273,150 Q1268,180 1264,220Z" fill="#070f08"/>
+    <!-- Center distant tree -->
+    <path d="M710,220 Q712,185 714,165 Q700,145 688,138 Q703,144 713,163 Q712,148 707,135 Q717,147 715,163 Q724,147 730,140 Q723,150 716,165 Q718,185 720,220Z" fill="#06100a" opacity="0.7"/>
+  </svg>
+
+  <div class="hero-fade"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">TravelAAAgency presents</div>
+    <h1>
+      <span class="small-line">Antigua, West Indies</span>
+      Your <em>Perfect</em><br>Paradise
+    </h1>
+    <p class="hero-sub">
+      White sand. Turquoise water. Smiling faces.
+      Everything you deserve — and <em style="font-style:italic; color:rgba(248,241,228,0.4);">nothing you don't need to see.</em>
+    </p>
+    <div class="hero-actions">
+      <a href="#book" class="btn-primary">Book Your Escape</a>
+      <a href="#truth" class="btn-ghost">Read the fine print</a>
+    </div>
+  </div>
+
+  <div class="hero-appeals">
+    <span class="chip chip-g">Pathos — Feel the warmth</span>
+    <span class="chip chip-g">Ethos — Official Tourism Board</span>
+    <span class="chip chip-r">Transfer — Aspirational imagery</span>
+  </div>
+</section>
+
+<!-- ── PROMO STRIP ── -->
+<div class="promo-strip">
+  <div class="promo-item">
+    <div class="promo-item-icon">🌊</div>
+    <div class="promo-item-text">
+      <strong>365 Beaches</strong>
+      <span>One for every day of the year</span>
+    </div>
+  </div>
+  <div class="promo-divider"></div>
+  <div class="promo-item">
+    <div class="promo-item-icon">☀️</div>
+    <div class="promo-item-text">
+      <strong>Year-Round Sun</strong>
+      <span>Drought-free™ weather guaranteed</span>
+    </div>
+  </div>
+  <div class="promo-divider"></div>
+  <div class="promo-item">
+    <div class="promo-item-icon">🍹</div>
+    <div class="promo-item-text">
+      <strong>All-Inclusive Resorts</strong>
+      <span>Never leave. We gently suggest you don't.</span>
+    </div>
+  </div>
+  <div class="promo-divider"></div>
+  <div class="promo-item">
+    <div class="promo-item-icon">✈️</div>
+    <div class="promo-item-text">
+      <strong>Direct Flights</strong>
+      <span>From all major colonial capitals</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── FEATURES ── -->
+<section class="features" id="features">
+  <div class="features-header reveal">
+    <h2>Why You'll <em>Love</em><br>Antigua</h2>
+    <p>We have carefully curated everything you will see, hear, taste, and feel. Nothing has been left to chance. Nothing has been left in your view that might cause discomfort. You are, after all, on holiday.</p>
+  </div>
+
+  <div class="features-grid">
+    <div class="feat-card reveal">
+      <div class="feat-num">01</div>
+      <h3>The Beaches</h3>
+      <p>Powdered white sand, so fine it feels invented. The water is a precise turquoise — the colour of postcards, of screensavers, of everything you imagined. It is real. We promise it is real.</p>
+      <span class="chip chip-r">Glittering Generality</span>
+    </div>
+    <div class="feat-card reveal">
+      <div class="feat-num">02</div>
+      <h3>The Hospitality</h3>
+      <p>The people of Antigua are famously warm. They will smile at you. They have always smiled at visitors. The economic arrangements that make this necessary are not part of the brochure.</p>
+      <span class="chip chip-r">Plain Folks</span>
+    </div>
+    <div class="feat-card reveal">
+      <div class="feat-num">03</div>
+      <h3>The Culture</h3>
+      <p>Steel pan music at sunset. Local cuisine presented in restaurant portions. A "cultural experience" curated so thoroughly it no longer resembles the culture from which it was drawn.</p>
+      <span class="chip chip-g">Logos — 300,000 visitors annually</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTRAST SPLIT ── -->
+<section class="contrast" id="truth">
+  <div class="contrast-left">
+    <div class="contrast-photo-overlay"></div>
+    <div class="contrast-left-content">
+      <div class="section-label" style="margin-bottom: 28px; color: rgba(255,255,255,0.5);">What You'll See</div>
+      <div class="contrast-big-text">Paradise,<br>as promised.</div>
+      <p>Crystal water. A rum punch at sunset. Laughter on the beach. The island spread out before you like something that exists only for your pleasure. It almost does.</p>
+      <span class="chip chip-g" style="margin-top:8px;">Transfer — Aspirational lifestyle</span>
+    </div>
+  </div>
+
+  <div class="contrast-right">
+    <h3>What the Brochure Omits ·</h3>
+
+    <div class="truth-row reveal">
+      <span class="truth-index">01</span>
+      <div>
+        <h4>The Library</h4>
+        <p>Antigua's public library operated for years from a building condemned after a 1974 earthquake. A sign outside read "Repairs are pending." The sign remained. The books rotted. The marina expanded.</p>
+      </div>
+    </div>
+
+    <div class="truth-row reveal">
+      <span class="truth-index">02</span>
+      <div>
+        <h4>The Labour</h4>
+        <p>The hands that clean your room, press your sheets, and prepare your plate earn wages your nightly rate exceeds before breakfast. Their warmth is genuine. The conditions producing it are not yours to examine.</p>
+      </div>
+    </div>
+
+    <div class="truth-row reveal">
+      <span class="truth-index">03</span>
+      <div>
+        <h4>The Water</h4>
+        <p>Antigua faces chronic freshwater scarcity. The resort pools are full. The lawns are green. The neighbourhoods beyond the resort gates are managed differently.</p>
+      </div>
+    </div>
+
+    <div class="truth-row reveal">
+      <span class="truth-index">04</span>
+      <div>
+        <h4>The Money</h4>
+        <p>Tourism revenue concentrates. Foreign-owned resorts return profits to foreign shareholders. The majority of what you spend does not circulate through Antiguan hands. This is not an accident.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── KINCAID QUOTE ── -->
+<section class="quote-section">
+  <div class="quote-inner reveal">
+    <div class="section-label" style="justify-content: center; margin-bottom: 32px;">From the Source</div>
+    <blockquote>
+      "An ugly thing, that is what you are when you become a tourist — an ugly, empty thing. A piece of garbage creating pollution and ruin wherever you go."<br><br>
+      <em>But of course, you had to pay for it. You chose to buy it.</em>
+    </blockquote>
+    <p class="quote-cite">— Jamaica Kincaid, A Small Place (1988) · Adapted for promotional use</p>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="testimonials">
+  <div class="testimonials-header reveal">
+    <h2>Guest Reviews</h2>
+    <p>Authenticity not verified.<br>Perspective not included.</p>
+  </div>
+
+  <div class="test-grid">
+    <div class="test-card reveal">
+      <div class="test-stars"><span></span><span></span><span></span><span></span><span></span></div>
+      <blockquote>
+        "Absolutely magical. The staff were so warm and welcoming. I felt like I was the only person on the island."
+        <em class="test-aside">Note: You were not the only person on the island. Approximately 90,000 people live there. You did not see most of them.</em>
+      </blockquote>
+      <p class="test-reviewer">— Brendan H., Connecticut</p>
+    </div>
+
+    <div class="test-card reveal">
+      <div class="test-stars"><span></span><span></span><span></span><span></span><span></span></div>
+      <blockquote>
+        "We never had to leave the resort once. The food, the pool, the views — everything was perfect. Antigua is paradise."
+        <em class="test-aside">Correct. You did not leave the resort. This was, for all parties, the intended outcome.</em>
+      </blockquote>
+      <p class="test-reviewer">— Claire M., London</p>
+    </div>
+
+    <div class="test-card reveal">
+      <div class="test-stars"><span></span><span></span><span></span><span></span><span></span></div>
+      <blockquote>
+        "I noticed a crumbling building on the drive from the airport, but once we got past that, the island was absolutely stunning."
+        <em class="test-aside">"Past that" is where people live. You found it quickly forgettable. They do not have that option.</em>
+      </blockquote>
+      <p class="test-reviewer">— Marcus D., Toronto</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FINE PRINT ── -->
+<section class="fine-print" id="book">
+  <div class="fine-print-inner">
+    <div class="fine-print-label">
+      Terms &amp;<br>Conditions<br>·<br>Please<br>Read
+    </div>
+    <div class="fine-print-text">
+      "Paradise" is a registered trademark of TravelAAAgency and the Antigua Tourism Authority. "Paradise" is defined as: the portion of Antigua visible from resort-approved viewpoints, resort-approved beaches, and resort-approved excursions.
+
+      <br><br>
+
+      TravelAAAgency makes no representations regarding the portions of Antigua not included in your package. <em>The tourism industry is not responsible for the history that made this economy dependent on your leisure.</em> Antiguans are not background scenery, though we understand this distinction may be difficult to maintain at poolside.
+
+      <br><br>
+
+      The warmth you experience is genuine. The conditions under which it is produced are not your concern (terms apply). <em>Your enjoyment is partly subsidised by economic arrangements first formalised under colonial rule</em> — a fact we find no reason to advertise. By booking this trip, you agree not to look too closely.
+
+      <br><br>
+
+      Water scarcity, wage inequality, the long-neglected National Library, and the concentration of tourism revenue in foreign-owned enterprises are excluded from the definition of "Paradise" for the purpose of this promotion. <em>You are a good person. You are on holiday. The world contains many beautiful things. We ask only that you do not ask who cleaned them.</em>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Travel<span>AAA</span>gency</div>
+    <div class="footer-copy">
+      © 2024 TravelAAAgency. All imagery curated. All truths optional.<br>
+      <span style="opacity:0.5; font-style:italic;">"The thing is, I didn't start out to make you feel bad." — J. Kincaid</span>
+    </div>
+  </div>
+  <div class="footer-techniques">
+    Advertising Techniques Used: Glittering Generality (365 beaches, year-round sun) · Euphemism ("drought-free weather") · Plain Folks (hospitality framing) · Transfer (aspirational sunset imagery) · Card Stacking (selective presentation of island life)
+    &nbsp;·&nbsp;
+    Rhetorical Appeals: Pathos — emotional aspiration and guilt · Ethos — official tourism authority framing · Logos — visitor statistics and economic data
+    &nbsp;·&nbsp;
+    Satirical Perspective: Corporate tourism agency voice, revealing colonial economic legacy, invisible labour, and the willing blindness of the tourist gaze.
+  </div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
