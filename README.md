@@ -6,7 +6,7 @@ Built for an English literature assignment exploring irony, colonial legacy, and
 
 ## Live Site
 
-Hosted via GitHub Pages: `https://YOUR_USERNAME.github.io/TravelAAAgency/`
+Hosted via GitHub Pages: `https://solqrflare.github.io/TravelAAAgency/`
 
 ## What's Inside
 
